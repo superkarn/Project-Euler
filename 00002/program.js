@@ -2,7 +2,7 @@ var Ratana = {};
 Ratana.Karn = {};
 Ratana.Karn.Euler = {};
 Ratana.Karn.Euler.P00002 = function () {
-    this.Limit = 4000000;
+    this.Limit = 0;
     this.Result = 0;
     this.Values = {};
 }
@@ -48,5 +48,6 @@ Ratana.Karn.Euler.P00002.prototype.fibonnaci = function (n) {
 
 
 var program = new Ratana.Karn.Euler.P00002();
+program.Limit = 4000000;
 var result = program.run();
 console.log(result);
