@@ -1,6 +1,6 @@
-var Ratana = {};
-Ratana.Karn = {};
-Ratana.Karn.Euler = {};
+var Ratana = Ratana || {};
+Ratana.Karn = Ratana.Karn || {};
+Ratana.Karn.Euler = Ratana.Karn.Euler || {};
 Ratana.Karn.Euler.P00010 = function () {}
 Ratana.Karn.Euler.P00010.prototype.isPrime = function (input) {
     // copied from P00007

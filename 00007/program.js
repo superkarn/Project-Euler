@@ -1,6 +1,6 @@
-var Ratana = {};
-Ratana.Karn = {};
-Ratana.Karn.Euler = {};
+var Ratana = Ratana || {};
+Ratana.Karn = Ratana.Karn || {};
+Ratana.Karn.Euler = Ratana.Karn.Euler || {};
 Ratana.Karn.Euler.P00007 = function () {
     // MaxTries is the number of loops we're willing to try.
     // This is used to prevent the program from running forever

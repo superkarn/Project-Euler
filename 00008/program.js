@@ -1,6 +1,6 @@
-var Ratana = {};
-Ratana.Karn = {};
-Ratana.Karn.Euler = {};
+var Ratana = Ratana || {};
+Ratana.Karn = Ratana.Karn || {};
+Ratana.Karn.Euler = Ratana.Karn.Euler || {};
 Ratana.Karn.Euler.P00008 = function () {}
 Ratana.Karn.Euler.P00008.prototype.run = function (input) {
     // length: the number of consecutive numbers to search for

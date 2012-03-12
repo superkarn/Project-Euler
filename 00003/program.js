@@ -1,6 +1,6 @@
-var Ratana = {};
-Ratana.Karn = {};
-Ratana.Karn.Euler = {};
+var Ratana = Ratana || {};
+Ratana.Karn = Ratana.Karn || {};
+Ratana.Karn.Euler = Ratana.Karn.Euler || {};
 Ratana.Karn.Euler.P00003 = function () {
     // this limits the number of iteration so we don't go into infinite loop
     this.Limit = 10000;

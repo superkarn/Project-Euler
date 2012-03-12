@@ -1,6 +1,6 @@
-var Ratana = {};
-Ratana.Karn = {};
-Ratana.Karn.Euler = {};
+var Ratana = Ratana || {};
+Ratana.Karn = Ratana.Karn || {};
+Ratana.Karn.Euler = Ratana.Karn.Euler || {};
 Ratana.Karn.Euler.P00005 = function () {
     // http://primes.utm.edu/lists/small/10000.txt
     this.Primes = [
