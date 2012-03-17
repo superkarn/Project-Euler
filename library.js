@@ -51,13 +51,15 @@ with ({
     
     // static methods
     $.add = function(a, b) {
-        var result = new $();
-        
+        // make sure a, b are instance of BigNumber
         if (!(a instanceof $)) a = new $(a);
         if (!(b instanceof $)) b = new $(b);
 
         // make sure the bases match
         if (a.Base != b.Base) throw "Bases of the numbers do not match.";
+        
+        
+        var result = new $();
         
         // loop through all the digits
         var carryOver = 0;
@@ -85,18 +87,18 @@ with ({
     }
     
     $.multiply = function(a, b) {
-        var result = new $();
-        
+        // make sure a, b are instance of BigNumber
         if (!(a instanceof $)) a = new $(a);
         if (!(b instanceof $)) b = new $(b);
 
         // make sure the bases match
         if (a.Base != b.Base) throw "Bases of the numbers do not match.";
         
+        
+        var result = new $();
+        
         var products = [];
         for (var ii in a.Value) {
-            // each position for a goes up by 1 order of magnitude
-            var magnitude = Math.pow(a.Base, ii);
             
             var tempProduct = new $();
             var carryOver = 0;
@@ -105,10 +107,10 @@ with ({
                 var aii = isNaN(a.Value[ii]) ? 0 : a.Value[ii];
                 var bjj = isNaN(b.Value[jj]) ? 0 : b.Value[jj];
                 
-                tempProduct.Value[jj] = ((aii * magnitude) *  bjj) + carryOver;
+                // do the actual multiplication
+                tempProduct.Value[jj] = (aii *  bjj) + carryOver;
                 
-                
-                if (tempProduct.Value[jj] >= magnitude) {
+                if (tempProduct.Value[jj] >= a.Base) {
                     carryOver = Math.floor(tempProduct.Value[jj] / a.Base);
                     tempProduct.Value[jj] = tempProduct.Value[jj] % a.Base;
                 } else {
@@ -119,12 +121,38 @@ with ({
             // add the last carry over
             if (carryOver > 0) tempProduct.Value.push(carryOver);
             
+            // each position for a goes up by 1 order of magnitude
+            tempProduct = $.shiftUp(tempProduct, ii);
+            
             products.push(tempProduct);
         }
         
         // add all the products to get the result
         for (var ii in products) {
             result = $.add(result, products[ii]);
+        }
+        
+        return result;
+    }
+    
+    $.shiftUp = function(a, places) {
+        // this method multiplies a by this.Base^places
+    
+        if (!(a instanceof $)) a = new $(a);
+        
+        // if places to shift is not a number, throw an error
+        if (isNaN(parseInt(places))) throw "Invalid places to shift up.";
+        
+        var result = new $();
+        
+        // add 0's (starts at 1 because result is already initialized with 0)
+        for (var ii=1; ii<places; ii++) {
+            result.Value.push(0);
+        }
+        
+        // append the values from a
+        for (var ii in a.Value) {
+            result.Value.push(a.Value[ii]);
         }
         
         return result;
